@@ -4,7 +4,7 @@
   "description": "A simple data mapper to abstract the data layer",
   "main": "src/index.js",
   "scripts": {
-    "lint": "npx eslint",
+    "lint": "npx eslint src/**/*.js --fix",
     "test": "NODE_ENV=test npx jest --detectOpenHandles"
   },
   "keywords": [],
