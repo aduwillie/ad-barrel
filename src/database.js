@@ -25,7 +25,7 @@ class Database {
         return this;
     }
 
-    addOneToManyRelationship(parentModel, childModel, parentRefField, where = {}) {
+    static addOneToManyRelationship(parentModel, childModel, parentRefField, where = {}) {
         validateDBModel(parentModel);
         validateDBModel(childModel);
         validateAlphaNumeric(parentRefField);
@@ -34,7 +34,7 @@ class Database {
         childModel._addParentModel(parentModel, parentRefField, where);
     }
 
-    addManyToManyRelationship(firstModel, secondModel, junctionTable, firstRefField, secondRefField, associationFields = []) {
+    static addManyToManyRelationship(firstModel, secondModel, junctionTable, firstRefField, secondRefField, associationFields = []) {
         validateDBModel(firstModel);
         validateDBModel(secondModel);
         validateAlphaNumeric(junctionTable);
