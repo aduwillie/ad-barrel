@@ -54,11 +54,11 @@ const DB = new Database(knexConfig, redisConfig);
 
 The above creates a Database instance which is an abstraction of your high level database related concerns. The `Database` exposes the following methods:
 
-* addDBModel(key, model)
-* addOneToManyRelationship(parentModel, childModel, parentRefField, where = {})
-* addManyToManyRelationship(firstModel, secondModel, junctionTable, firstRefField, secondRefField, associationFields = [])
-* isRedisReady()
-* isSQLReady()
+* `addDBModel(key, model)`
+* `addOneToManyRelationship(parentModel, childModel, parentRefField, where = {})`
+* `addManyToManyRelationship(firstModel, secondModel, junctionTable, firstRefField, secondRefField, associationFields = [])`
+* `isRedisReady()`
+* `isSQLReady()`
 
 NB: Both `addOneToManyRelationship` and `addManyToManyRelationship` are static methods
 
