@@ -1,0 +1,33 @@
+{
+  "name": "data-mapper",
+  "version": "1.0.0",
+  "description": "A simple data mapper to abstract the data layer",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "npx eslint",
+    "test": "NODE_ENV=test npx jest --detectOpenHandles"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "pre-commit": [
+    "lint"
+  ],
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "jest": "^24.5.0",
+    "pre-commit": "^1.2.2",
+    "sinon": "^7.3.1"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.5",
+    "bluebird": "^3.5.3",
+    "joi": "^14.3.1",
+    "knex": "^0.16.3",
+    "mysql": "^2.16.0",
+    "pg": "^7.9.0",
+    "redis": "^2.8.0",
+    "sqlite": "^3.0.3",
+    "uuid": "^3.3.2"
+  }
+}
