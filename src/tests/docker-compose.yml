@@ -2,6 +2,7 @@ version: '2'
 services:
   mysqlstore:
     image: mysql:5.7
+    container_name: mysqlstore
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
