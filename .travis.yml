@@ -20,7 +20,6 @@ before_install:
   - chmod +x ./clean_db.sh
 
 install:
-  - sudo apt-get update
   - docker-compose up -d 
 
 before_script:
