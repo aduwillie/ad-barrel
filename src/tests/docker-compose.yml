@@ -1,0 +1,23 @@
+version: '2'
+services:
+  mysqlstore:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: school
+  barrel_test:
+    build:
+      context: ../../
+      dockerfile: src/tests/Dockerfile
+    container_name: barrel_test
+    environment:
+      - DB_HOST=mysqlstore
+      - DB_NAME=school
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - NODE_ENV=test
+    volumes:
+      - ../../src:/app/src
+      - ../../package.json:/app/package.json
+      - ./setup_db.sh:/app/setup_db.sh

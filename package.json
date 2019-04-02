@@ -5,7 +5,12 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "npx eslint src/**/*.js --fix",
-    "test": "NODE_ENV=test npx jest --detectOpenHandles"
+    "migrate:create": "./node_modules/.bin/knex migrate:make",
+    "migrate:latest": "./node_modules/.bin/knex migrate:latest",
+    "migrate:rollback": "./node_modules/.bin/knex migrate:rollback",
+    "start:test": "docker-compose -f ./src/tests/docker-compose.yml up -d",
+    "_test": "node_modules/.bin/jest --detectOpenHandles 'src/tests/index.spec.js' --forceExit",
+    "test": "cd src/tests && ./start_tests.sh && cd ../../"
   },
   "keywords": [],
   "author": "",

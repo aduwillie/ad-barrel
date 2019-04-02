@@ -2,12 +2,23 @@ const Knex = require('knex');
 const Redis = require('redis');
 const Joi = require('joi');
 
-const { 
-    validateAlphaNumeric,
-    validateDBModel, 
-    validateKnexConfig,
-    validateRedisConfig
-} = require('./utils/validation');
+const DBModel = require('./db-model');
+
+const validateKnexConfig = (config) => Joi.assert(config, Joi.object({
+    client: Joi.string().valid([ 'mysql', 'pg', 'sqlite3' ]).required(),
+    connection: Joi.object({
+        host: Joi.string().required(),
+        user: Joi.string().required(),
+        password: Joi.string().required(),
+        database: Joi.string().required(),
+    }),
+    pool: Joi.object().optional(),
+    migrations: Joi.object().optional(),
+}));
+
+const validateRedisConfig = (config) => Joi.assert(config, Joi.object({
+    host: Joi.string().required(),
+}).optional());
 
 class Database {
     constructor(knexConfig, redisConfig) {
@@ -18,29 +29,31 @@ class Database {
     }
 
     addDBModel(key, model) {
-       validateAlphaNumeric(key);
-        validateDBModel(model);
+        Joi.assert(key, Joi.string().regex(/^[a-zA-Z0-9_]+$/).required());
+        Joi.assert(model, Joi.object().type(DBModel).required());
 
         this[key] = model;
         return this;
     }
 
     static addOneToManyRelationship(parentModel, childModel, parentRefField, where = {}) {
-        validateDBModel(parentModel);
-        validateDBModel(childModel);
-        validateAlphaNumeric(parentRefField);
+        Joi.assert(parentModel, Joi.object().type(DBModel).required());
+        Joi.assert(childModel, Joi.object().type(DBModel).required());
+        Joi.assert(parentRefField, Joi.string().regex(/^[a-zA-Z0-9_]+$/).required());
         Joi.assert(where, Joi.object());
+
         parentModel._addChildModel(childModel);
         childModel._addParentModel(parentModel, parentRefField, where);
     }
 
     static addManyToManyRelationship(firstModel, secondModel, junctionTable, firstRefField, secondRefField, associationFields = []) {
-        validateDBModel(firstModel);
-        validateDBModel(secondModel);
-        validateAlphaNumeric(junctionTable);
-        validateAlphaNumeric(firstRefField);
-        validateAlphaNumeric(secondRefField);
+        Joi.assert(firstModel, Joi.object().type(DBModel).required());
+        Joi.assert(secondModel, Joi.object().type(DBModel).required());
+        Joi.assert(junctionTable, Joi.string().regex(/^[a-zA-Z0-9_]+$/).required());
+        Joi.assert(firstRefField, Joi.string().regex(/^[a-zA-Z0-9_]+$/).required());
+        Joi.assert(secondRefField, Joi.string().regex(/^[a-zA-Z0-9_]+$/).required());
         Joi.assert(associationFields, Joi.array().items(Joi.string()).optional());
+
         firstModel._addAssociateModel(secondModel, junctionTable, secondRefField, firstRefField, associationFields);
         secondModel._addAssociateModel(firstModel, junctionTable, firstRefField, secondRefField, associationFields);
     }

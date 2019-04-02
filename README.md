@@ -181,4 +181,4 @@ update(id, attrs, userUUID);
 
 ## Testing
 
-TBD
+Testing is done in the `src/tests` directory.
