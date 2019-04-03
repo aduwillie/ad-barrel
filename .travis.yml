@@ -18,7 +18,7 @@ before_install:
   - chmod +x src/tests/clean_db.sh
 
 install:
-  - npm run install
+  - npm install
 
 before_script:
   - ./src/tests/setup_db.sh
