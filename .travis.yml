@@ -5,7 +5,7 @@ node_js:
 sudo: required
 
 services:
-  - msql
+  - mysql
 
 env:
   - MYSQL_HOST=127.0.0.1
