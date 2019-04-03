@@ -11,7 +11,7 @@ env:
   - MYSQL_HOST=127.0.0.1
   - MYSQL_USER=root
   - DB_NAME=school
-  - NODE_ENV=test
+  - NODE_ENV=ci
 
 before_install:
   - chmod +x src/tests/setup_db.sh
