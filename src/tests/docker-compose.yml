@@ -13,9 +13,9 @@ services:
       dockerfile: src/tests/Dockerfile
     container_name: barrel_test
     environment:
-      - DB_HOST=mysqlstore
+      - MYSQL_HOST=mysqlstore
       - DB_NAME=school
-      - DB_USER=root
+      - MYSQL_USER=root
       - DB_PASSWORD=root
       - NODE_ENV=test
     volumes:

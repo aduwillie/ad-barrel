@@ -3,9 +3,9 @@ module.exports = {
     client: 'mysql',
     connection: {
         database: process.env.DB_NAME,
-        user: process.env.DB_USER,
+        user: process.env.MYSQL_USER,
         password: process.env.DB_PASSWORD,
-        host: process.env.DB_HOST
+        host: process.env.MYSQL_HOST
     },
     pool: {
         min: 2,
