@@ -181,4 +181,16 @@ update(id, attrs, userUUID);
 
 ## Testing
 
-Testing is done in the `src/tests` directory.
+Run the npm script command in the root of the project directory. 
+
+```
+npm run test
+```
+
+The above command would:
+
+- Move to the `src/tests` directory
+- Run the `start_tests.sh` script
+- Move back to the root of the project
+
+You need to ensure that `start_tests.sh`, `setup_db.sh` and `clean_db.sh` scripts are executable. You can do so with `chmode +x <file_name>`.
