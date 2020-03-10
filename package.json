@@ -20,7 +20,7 @@
   ],
   "devDependencies": {
     "eslint": "^5.16.0",
-    "jest": "^24.5.0",
+    "jest": "^25.1.0",
     "pre-commit": "^1.2.2",
     "sinon": "^7.3.1"
   },
